@@ -1,0 +1,373 @@
+/* --- ABOUT PAGE SECTION (Halaman Khusus About) --- */
+.about-page-section {
+    background-color: #8CA361;
+    color: var(--color-text-main);
+    padding-top: 150px;
+    padding-bottom: 0;
+}
+
+.about-page-header {
+    text-align: center;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ap-logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.ap-subtitle {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.ap-title {
+    font-family: var(--font-serif);
+    font-size: 55px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.ap-content-container {
+    display: flex;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    gap: 80px;
+}
+
+.ap-left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+.ap-image-small-wrapper {
+    width: 250px;
+    aspect-ratio: 4 / 5;
+    margin-bottom: 50px;
+}
+
+.ap-image-small {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ap-text-block {
+    text-align: center;
+    max-width: 450px;
+    margin-bottom: 60px;
+}
+
+.ap-subheading {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.ap-paragraph {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.ap-right-column {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ap-image-large {
+    width: 100%;
+    max-width: 550px;
+    height: 100%;
+    min-height: 800px;
+    object-fit: cover;
+}
+
+@media (max-width: 950px) {
+    .ap-content-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    .ap-right-column {
+        width: 100%;
+        justify-content: center;
+    }
+    .ap-image-large {
+        min-height: 500px;
+    }
+    .ap-title {
+        font-size: 40px;
+    }
+}
+
+/* --- MOMENTS SLIDER SECTION --- */
+.moments-section {
+    background-color: #DFA6A9;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.moments-header {
+    text-align: center;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mm-logo {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.mm-subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+}
+
+.slider-wrapper {
+    width: 100%;
+    overflow: hidden; 
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.slide img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.slider-btn {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: #111;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        padding: 0 15px;
+    }
+    .slide img {
+        max-height: 400px;
+    }
+    .slider-btn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* --- CONTACT FORM SECTION (Di Bawah About) --- */
+.contact-form-section {
+    background-color: #F9F8F6;
+    padding: 120px 20px;
+    color: var(--color-text-main);
+}
+
+.cf-split-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.cf-left-side {
+    width: 50%;
+    padding-right: 80px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cf-subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.cf-heading {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 60px;
+}
+
+.cf-info-block p {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.cf-info-block p a {
+    text-decoration: underline;
+}
+
+.cf-right-side {
+    width: 50%;
+    padding-left: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.minimal-form {
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-row {
+    margin-bottom: 25px;
+}
+
+.form-row.split {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row.split .form-group {
+    width: 50%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-text-main);
+    background-color: transparent;
+    padding: 8px 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--color-text-main);
+    outline: none;
+    transition: border-bottom 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-bottom: 2px solid var(--color-text-main);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.submit-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity var(--transition-fast);
+}
+
+.submit-btn:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+    .cf-split-container {
+        flex-direction: column;
+    }
+    .cf-left-side {
+        width: 100%;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding-bottom: 60px;
+        margin-bottom: 60px;
+    }
+    .cf-right-side {
+        width: 100%;
+        padding-left: 0;
+        align-items: center;
+    }
+}

@@ -1,0 +1,281 @@
+/* =========================================================
+   SUITS & DRESS PAGE (SuitesNDress.php)
+   ========================================================= */
+
+.sd-page {
+    background-color: #F9F8F6;
+    color: #111111;
+}
+
+.sd-intro-section {
+    padding: 200px 20px 80px 20px;
+    text-align: center;
+}
+
+.sd-intro-container {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.sd-subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.sd-main-title {
+    font-family: var(--font-serif);
+    font-size: 62px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 35px;
+    letter-spacing: -0.5px;
+}
+
+.sd-main-desc {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 580px;
+    margin: 0 auto 60px auto;
+}
+
+.sd-filter-tabs {
+    display: inline-flex;
+    gap: 40px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+    padding-bottom: 15px;
+}
+
+.sd-filter-btn {
+    background: none;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #111111;
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 5px 0;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.sd-filter-btn:hover,
+.sd-filter-btn.active {
+    opacity: 1;
+}
+
+.sd-filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: #111111;
+}
+
+.sd-catalog-section {
+    padding: 40px 20px 140px 20px;
+}
+
+.sd-catalog-container {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.sd-catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 45px;
+    row-gap: 80px;
+}
+
+.sd-card {
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.sd-card.is-hidden {
+    display: none;
+}
+
+.sd-card-img-box {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background-color: #EAE8E3;
+}
+
+.sd-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.sd-card:hover .sd-card-img {
+    transform: scale(1.05);
+}
+
+.sd-card-body {
+    text-align: center;
+    padding: 0 10px;
+}
+
+.sd-card-number {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.75;
+}
+
+.sd-card-title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+
+.sd-card-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 18px;
+    border-top: 1px solid rgba(17, 17, 17, 0.25);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.25);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+
+.sd-card-desc {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.sd-fitting-section {
+    background-color: #8CA361;
+    padding: 120px 20px;
+}
+
+.sd-fitting-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sd-fitting-left {
+    width: 50%;
+    padding-right: 80px;
+    border-right: 1px solid rgba(17, 17, 17, 0.4);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sd-fitting-title {
+    font-family: var(--font-serif);
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.sd-fitting-desc {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+.sd-fitting-right {
+    width: 50%;
+    padding-left: 80px;
+}
+
+.sd-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.sd-step-item {
+    display: flex;
+    gap: 25px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.4);
+}
+
+.sd-step-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    padding-top: 4px;
+}
+
+.sd-step-text h3 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.sd-step-text p {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+@media (max-width: 1024px) {
+    .sd-catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    .sd-main-title {
+        font-size: 42px;
+    }
+    .sd-filter-tabs {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .sd-catalog-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    .sd-fitting-container {
+        flex-direction: column;
+    }
+    .sd-fitting-left {
+        width: 100%;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.3);
+        padding-bottom: 60px;
+        margin-bottom: 60px;
+    }
+    .sd-fitting-right {
+        width: 100%;
+        padding-left: 0;
+    }
+}

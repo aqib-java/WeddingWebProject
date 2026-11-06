@@ -1,0 +1,344 @@
+/* =========================================================
+   CONTACT & APPOINTMENT PAGE STYLING (Contact.php)
+   ========================================================= */
+
+.contact-page {
+    background-color: #F9F8F6;
+    color: #111111;
+}
+
+.cp-section {
+    padding: 180px 20px 130px 20px;
+}
+
+.cp-split-container {
+    max-width: 1220px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+}
+
+/* --- KOLOM KIRI --- */
+.cp-left-col {
+    width: 48%;
+    padding-right: 75px;
+    border-right: 1px solid rgba(17, 17, 17, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.cp-subtitle {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+    display: block;
+}
+
+.cp-main-title {
+    font-family: var(--font-serif);
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 50px;
+    max-width: 460px;
+}
+
+.cp-info-list {
+    margin-bottom: 50px;
+}
+
+.cp-info-list p {
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    line-height: 1.9;
+    font-weight: 300;
+    margin: 0;
+}
+
+.cp-info-list a {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.4);
+    padding-bottom: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.cp-info-list a:hover {
+    opacity: 0.6;
+}
+
+.cp-policy-box {
+    max-width: 420px;
+    padding: 25px 28px;
+    border: 1px solid rgba(17, 17, 17, 0.25);
+    background-color: rgba(140, 163, 97, 0.12);
+    text-align: left;
+}
+
+.cp-policy-title {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 1.2px;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.cp-policy-desc {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.65;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* --- KOLOM KANAN (FORMULIR) --- */
+.cp-right-col {
+    width: 52%;
+    padding-left: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cp-form {
+    width: 100%;
+    max-width: 520px;
+}
+
+.cp-form-row {
+    margin-bottom: 28px;
+}
+
+.cp-form-row.split {
+    display: flex;
+    gap: 25px;
+}
+
+.cp-form-row.split .cp-form-group {
+    width: 50%;
+}
+
+.cp-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.cp-form-group label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: #111111;
+}
+
+.cp-form-group input,
+.cp-form-group textarea,
+.cp-select-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #111111;
+    background-color: transparent;
+    padding: 10px 0;
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    color: #111111;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.cp-form-group input::placeholder,
+.cp-form-group textarea::placeholder {
+    color: rgba(17, 17, 17, 0.38);
+    font-weight: 300;
+}
+
+.cp-form-group input:focus,
+.cp-form-group textarea:focus {
+    border-bottom: 2px solid #8CA361;
+}
+
+/* --- SLOT JAM MEETING GRID --- */
+.cp-slot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.cp-slot-legend {
+    display: flex;
+    gap: 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    margin-bottom: 14px;
+    color: rgba(17, 17, 17, 0.75);
+}
+
+.cp-slot-legend .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.cp-slot-legend .dot.available {
+    background-color: #8CA361;
+}
+
+.cp-slot-legend .dot.booked {
+    background-color: #111111;
+}
+
+.cp-slot-legend .dot.buffer {
+    background-color: #DFA6A9;
+}
+
+.cp-time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.cp-time-slot {
+    padding: 12px 8px;
+    border: 1px solid rgba(17, 17, 17, 0.35);
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.cp-time-slot .slot-time {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cp-time-slot .slot-badge {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cp-time-slot.is-available:hover {
+    border-color: #111111;
+    background-color: rgba(140, 163, 97, 0.18);
+}
+
+.cp-time-slot.is-selected {
+    background-color: #8CA361 !important;
+    border-color: #111111 !important;
+    color: #111111;
+}
+
+.cp-time-slot.is-booked {
+    background-color: rgba(17, 17, 17, 0.08);
+    border-color: rgba(17, 17, 17, 0.2);
+    color: rgba(17, 17, 17, 0.4);
+    cursor: not-allowed;
+}
+
+.cp-time-slot.is-booked .slot-time {
+    text-decoration: line-through;
+}
+
+.cp-time-slot.is-buffer {
+    background-color: rgba(223, 166, 169, 0.35);
+    border-color: rgba(223, 166, 169, 0.8);
+    color: rgba(17, 17, 17, 0.55);
+    cursor: not-allowed;
+}
+
+.cp-slot-helper {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    color: rgba(17, 17, 17, 0.65);
+    font-weight: 300;
+}
+
+.cp-feedback {
+    display: none;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+
+.cp-feedback.show {
+    display: block;
+}
+
+.cp-feedback.success {
+    background-color: rgba(140, 163, 97, 0.25);
+    border: 1px solid #8CA361;
+    color: #111111;
+}
+
+.cp-feedback.error {
+    background-color: rgba(231, 110, 60, 0.2);
+    border: 1px solid #E76E3C;
+    color: #111111;
+}
+
+.cp-submit-wrap {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.cp-submit-btn {
+    background: none;
+    border: 1px solid #111111;
+    padding: 15px 45px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #111111;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cp-submit-btn:hover {
+    background-color: #111111;
+    color: #F9F8F6;
+}
+
+@media (max-width: 950px) {
+    .cp-split-container {
+        flex-direction: column;
+    }
+    .cp-left-col {
+        width: 100%;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+        padding-bottom: 60px;
+        margin-bottom: 60px;
+    }
+    .cp-right-col {
+        width: 100%;
+        padding-left: 0;
+        align-items: center;
+    }
+    .cp-form-row.split {
+        flex-direction: column;
+        gap: 28px;
+    }
+    .cp-form-row.split .cp-form-group {
+        width: 100%;
+    }
+    .cp-time-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
