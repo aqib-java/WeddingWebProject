@@ -78,28 +78,39 @@
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <nav class="sidebar-menu" id="sidebarMenu">
-        <button class="close-btn" id="closeMenuBtn" aria-label="Tutup Menu">&times;</button>
+        <div class="sidebar-header">
+            <span class="sidebar-eyebrow">Menu</span>
+            <button class="close-btn" id="closeMenuBtn" aria-label="Tutup Menu">&times;</button>
+        </div>
 
         <div class="sidebar-content">
             <h2 class="sidebar-logo">Ever After</h2>
+            <p class="sidebar-tagline">Pernikahan, Terinspirasi Alam</p>
 
             <ul class="sidebar-nav">
-                <li><a href="index.php">Beranda</a></li>
-                <li><a href="WeddingOption.php">Pilihan Pernikahan</a></li>
-                <li><a href="SuitesNDress.php">Koleksi Busana</a></li>
-                <li><a href="FNB.php">Makanan & Minuman</a></li>
-                <li><a href="about.php">Tentang Kami</a></li>
-                <li><a href="Contact.php">Reservasi Meeting</a></li>    
-                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                    <li><a href="Admin.php">Kelola Reservasi (Admin)</a></li>
-                <?php endif; ?>
+                <li><a href="index.php" class="<?php echo $page === 'index.php' ? 'active' : ''; ?>">Beranda</a></li>
+                <li><a href="WeddingOption.php" class="<?php echo $page === 'weddingoption.php' ? 'active' : ''; ?>">Pilihan Pernikahan</a></li>
+                <li><a href="SuitesNDress.php" class="<?php echo $page === 'suitesndress.php' ? 'active' : ''; ?>">Koleksi Busana</a></li>
+                <li><a href="FNB.php" class="<?php echo $page === 'fnb.php' ? 'active' : ''; ?>">Makanan &amp; Minuman</a></li>
+                <li><a href="about.php" class="<?php echo $page === 'about.php' ? 'active' : ''; ?>">Tentang Kami</a></li>
+                <li><a href="Contact.php" class="<?php echo $page === 'contact.php' ? 'active' : ''; ?>">Reservasi Meeting</a></li>
 
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'client'): ?>
-                    <li><a href="History.php">Riwayat Reservasi</a></li>
+                    <li><a href="History.php" class="<?php echo $page === 'history.php' ? 'active' : ''; ?>">Riwayat Reservasi</a></li>
                 <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                    <li><a href="Admin.php">Kelola Reservasi (Admin)</a></li>
+                    <li><a href="Admin.php" class="<?php echo $page === 'admin.php' ? 'active' : ''; ?>">Kelola Reservasi (Admin)</a></li>
                 <?php endif; ?>
             </ul>
-            
+
+            <div class="sidebar-footer">
+                <p class="sidebar-footer-title">Rencanakan Hari Istimewa Anda</p>
+                <a href="Contact.php" class="sidebar-cta">Reservasi Sekarang</a>
+
+                <div class="sidebar-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="tel:0214567890">021-456-7890</a>
+                </div>
+            </div>
         </div>
     </nav>
