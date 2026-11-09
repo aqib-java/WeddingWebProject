@@ -219,15 +219,14 @@ a {
 /* --- SIDEBAR MENU & OVERLAY --- */
 .menu-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
+    inset: 0;
+    background-color: rgba(15, 20, 10, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     z-index: 998;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease-in-out;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .menu-overlay.active {
@@ -240,90 +239,264 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 450px;
+    max-width: 440px;
     height: 100vh;
-    background-color: #8CA361;
+    height: 100dvh;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.18), transparent 42%),
+        radial-gradient(circle at 92% 96%, rgba(0, 0, 0, 0.2), transparent 46%),
+        linear-gradient(160deg, #9baf70 0%, #8ca361 45%, #75884e 100%);
     color: var(--color-text-main);
     z-index: 999;
     transform: translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 34px 40px 30px;
     overflow-y: auto;
+    box-shadow: 14px 0 45px rgba(0, 0, 0, 0.28);
 }
 
 .sidebar-menu.active {
     transform: translateX(0);
 }
 
+/* Watermark dekoratif di sudut kanan bawah */
+.sidebar-menu::before {
+    content: "EA";
+    position: absolute;
+    right: -14px;
+    bottom: -62px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 260px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+    user-select: none;
+}
+
+.sidebar-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-eyebrow {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
 .close-btn {
-    background: none;
-    border: none;
+    background-color: rgba(17, 17, 17, 0.06);
+    border: 1px solid rgba(17, 17, 17, 0.25);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-sans);
-    font-size: 45px;
+    font-size: 26px;
     font-weight: 300;
+    line-height: 1;
     color: var(--color-text-main);
     cursor: pointer;
-    position: absolute;
-    top: 15px;
-    left: 25px;
-    line-height: 1;
-    transition: transform var(--transition-fast);
+    transition: transform 0.35s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .close-btn:hover {
-    transform: scale(1.1);
+    background-color: #111111;
+    color: #eef2e6;
+    transform: rotate(90deg);
 }
 
 .sidebar-content {
-    margin-top: 60px;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+    flex: 1;
+    margin-top: 34px;
 }
 
 .sidebar-logo {
     font-family: var(--font-serif);
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 400;
-    margin-bottom: 50px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.sidebar-tagline {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.68;
+    margin-bottom: 38px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.18);
 }
 
 .sidebar-nav {
     list-style: none;
+    counter-reset: sidebar-item;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 2px;
     width: 100%;
+}
+
+.sidebar-nav li {
+    counter-increment: sidebar-item;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.sidebar-nav li:last-child {
+    border-bottom: none;
 }
 
 .sidebar-nav li a {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 15px 6px;
     font-family: var(--font-serif);
-    font-size: 36px;
+    font-size: 29px;
+    line-height: 1.15;
+    transition: padding-left 0.35s ease;
+}
+
+.sidebar-nav li a::before {
+    content: counter(sidebar-item, decimal-leading-zero);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0.45;
+    transform: translateY(-4px);
     transition: opacity 0.3s ease;
 }
 
+.sidebar-nav li a::after {
+    content: "\2192";
+    margin-left: auto;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
 .sidebar-nav li a:hover {
-    opacity: 0.5;
+    padding-left: 16px;
+}
+
+.sidebar-nav li a:hover::before {
+    opacity: 1;
+}
+
+.sidebar-nav li a:hover::after {
+    opacity: 0.75;
+    transform: translateX(0);
+}
+
+.sidebar-nav li a.active {
+    font-style: italic;
+}
+
+.sidebar-nav li a.active::before {
+    opacity: 1;
+}
+
+.sidebar-nav li a.active::after {
+    content: "\25CF";
+    font-size: 9px;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Area bawah sidebar */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 34px;
+}
+
+.sidebar-footer-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.62;
+    margin-bottom: 14px;
+}
+
+.sidebar-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 28px;
+    border: 1px solid #111111;
+    transition: background-color 0.35s ease, color 0.35s ease, gap 0.35s ease;
+}
+
+.sidebar-cta::after {
+    content: "\2192";
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1;
+}
+
+.sidebar-cta:hover {
+    background-color: #111111;
+    color: #eef2e6;
+    gap: 16px;
 }
 
 .sidebar-social {
-    margin-top: auto;
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 250px;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(17, 17, 17, 0.15);
 }
 
 .sidebar-social a {
+    position: relative;
     font-family: var(--font-sans);
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+}
+
+.sidebar-social a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-social a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* --- CONTACT & FOOTER SECTION (Footer.php) --- */
@@ -465,5 +638,17 @@ a {
 @media (max-width: 500px) {
     .sidebar-menu {
         max-width: 100%;
+        padding: 26px 24px 24px;
+    }
+    .sidebar-menu::before {
+        font-size: 180px;
+        bottom: -40px;
+    }
+    .sidebar-nav li a {
+        font-size: 25px;
+        padding: 13px 4px;
+    }
+    .sidebar-social {
+        gap: 16px;
     }
 }

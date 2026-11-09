@@ -48,35 +48,6 @@
         </div>
     </footer>
 
-    <!-- OVERLAY (Latar belakang gelap saat menu terbuka) -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <!-- SIDEBAR MENU -->
-    <nav class="sidebar-menu" id="sidebarMenu">
-        <!-- Tombol Tutup -->
-        <button class="close-btn" id="closeMenuBtn" aria-label="Tutup Menu">&times;</button>
-
-        <div class="sidebar-content">
-            <!-- Logo Sidebar -->
-            <h2 class="sidebar-logo">After Life</h2>
-
-            <!-- Link Navigasi Utama -->
-            <ul class="sidebar-nav">
-                <li><a href='WeddingOption.php'>Pilihan Pernikahan</a></li>
-                <li><a href='SuitesNDress.php'>Koleksi Busana</a></li>
-                <li><a href='FNB.php'>Makanan & Minuman</a></li>
-                <li><a href='About.php'>Tentang Kami</a></li>
-                <li><a href='Contact.php'>Kontak</a></li>
-            </ul>
-
-            <!-- Link Sosial Media (Paling Bawah) -->
-            <div class="sidebar-social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-            </div>
-        </div>
-    </nav>
-
     <!-- Script JS ditaruh paling bawah, SETELAH semua HTML selesai -->
     <script src="Js/script.js"></script>
     
