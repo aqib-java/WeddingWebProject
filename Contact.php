@@ -8,7 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 
 $booking_success = '';
 $booking_error = '';
-$default_date = $_POST['meetingDate'] ?? '2026-10-21';
+date_default_timezone_set('Asia/Jakarta');
+
+$default_date = $_POST['meetingDate'] ?? date('Y-m-d');
 
 // Isi otomatis data diri jika user sedang login
 $prefill_first = '';
@@ -44,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
         $time_db = sprintf('%02d:00:00', $target_hour);
 
         // Validasi Bentrok & Jeda 1 Jam langsung dari tabel meetings di MySQL
-        
+
         // Validasi jadwal dan jeda 1 jam dari database
         $stmt_chk = $conn->prepare(
             "SELECT meeting_time, email, user_id
@@ -98,16 +100,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
                     'Slot jam tersebut sudah terisi atau terkena jeda 1 jam. Silakan pilih jam lain.';
             } else {
                 $stmt_ins = $conn->prepare("INSERT INTO meetings (client_name, email, phone, meeting_date, meeting_time, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            if ($stmt_ins) {
-                $stmt_ins->bind_param("ssssssi", $client_name, $email, $phone, $meeting_date, $time_db, $notes, $user_id);
-                if ($stmt_ins->execute()) {
-                    $buffer_next = sprintf('%02d:00', $target_hour + 1);
-                    $booking_success = 'Terima kasih, <strong>' . htmlspecialchars($client_name) . '</strong>! Reservasi meeting Anda pada <strong>' . date('d/m/Y', strtotime($meeting_date)) . ' pukul ' . htmlspecialchars($selected_hr) . ' WIB</strong> berhasil disimpan. Pukul <strong>' . $buffer_next . '</strong> otomatis dikunci sebagai waktu jeda 1 jam.';
-                } else {
-                    $booking_error = 'Gagal menyimpan reservasi ke database. Silakan coba lagi.';
+                if ($stmt_ins) {
+                    $stmt_ins->bind_param("ssssssi", $client_name, $email, $phone, $meeting_date, $time_db, $notes, $user_id);
+                    if ($stmt_ins->execute()) {
+                        $buffer_next = sprintf('%02d:00', $target_hour + 1);
+                        $booking_success = 'Terima kasih, <strong>' . htmlspecialchars($client_name) . '</strong>! Reservasi meeting Anda pada <strong>' . date('d/m/Y', strtotime($meeting_date)) . ' pukul ' . htmlspecialchars($selected_hr) . ' WIB</strong> berhasil disimpan. Pukul <strong>' . $buffer_next . '</strong> otomatis dikunci sebagai waktu jeda 1 jam.';
+                    } else {
+                        $booking_error = 'Gagal menyimpan reservasi ke database. Silakan coba lagi.';
+                    }
+                    $stmt_ins->close();
                 }
-                $stmt_ins->close();
-            }
             }
         }
     }
@@ -212,7 +214,8 @@ include 'Header.php';
                         <div class="cp-form-group">
                             <label for="meetingDate">Tanggal Appointment Meeting *</label>
                             <input type="date" id="meetingDate" name="meetingDate"
-                                value="<?php echo htmlspecialchars($default_date); ?>" min="2026-01-01" required>
+                                value="<?php echo htmlspecialchars($default_date); ?>"
+                                min="<?php echo date('Y-m-d'); ?>" required>
                         </div>
                     </div>
 
