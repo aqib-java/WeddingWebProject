@@ -118,7 +118,11 @@
 }
 
 .history-table tr:hover td {
-    background-color: rgba(249, 248, 246, 0.75);
+    background-color: rgba(140, 163, 97, 0.08);
+}
+
+.history-table tbody tr {
+    transition: background-color 0.25s ease;
 }
 
 .mono-col {
@@ -188,6 +192,14 @@
     max-width: 480px;
     margin: 0 auto;
     opacity: 0.8;
+}
+
+.history-empty-cta {
+    margin-top: 30px;
+}
+
+.history-summary-bar {
+    flex-wrap: wrap;
 }
 
 /* --- RESPONSIVE MOBILE & TABLET --- */

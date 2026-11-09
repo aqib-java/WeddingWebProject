@@ -4,7 +4,7 @@
             <!-- Area Kontak Utama -->
             <div class="cf-main">
                 <!-- Ikon Daun (Opsional, pakai teks biasa atau biarkan logo Serif yang dominan) -->
-                <h2 class="cf-logo-text">Ever Afrer</h2>
+                <h2 class="cf-logo-text">Ever After</h2>
                 
                 <a href="tel:0214567890" class="cf-phone">021-456-7890</a>
                 

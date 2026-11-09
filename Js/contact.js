@@ -8,7 +8,8 @@ const cpHelperText = document.getElementById('slotHelperText');
 const cpDateLabel = document.getElementById('selectedDateLabel');
 
 if (cpDateInput && cpTimeGrid && cpSelectedTime) {
-    const opHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+    // Sesi 1 jam + jeda 1 jam => start tiap 2 jam
+    const opHours = [9, 11, 13, 15, 17];
     const dbSlots = window.DB_BOOKED_SLOTS || {};
 
     function formatIndoDate(dStr) {
@@ -34,11 +35,9 @@ if (cpDateInput && cpTimeGrid && cpSelectedTime) {
             btn.className = 'cp-time-slot';
 
             const isBooked = bookedHours.includes(hr);
-
-            const isBufferBeforeMeeting = bookedHours.includes(hr + 1);
-            const isBufferAfterMeeting = bookedHours.includes(hr - 1);
-
-            const isBuffer = isBufferBeforeMeeting || isBufferAfterMeeting;
+            const isBuffer = !isBooked && bookedHours.some(function (b) {
+                return Math.abs(b - hr) <= 1;
+            });
 
             if (isBooked) {
                 btn.classList.add('is-booked');
@@ -60,7 +59,7 @@ if (cpDateInput && cpTimeGrid && cpSelectedTime) {
                     cpSelectedTime.value = label;
                     const nextHr = ((hr + 1) < 10 ? '0' + (hr + 1) : (hr + 1)) + ':00';
                     if (cpHelperText) {
-                        cpHelperText.innerHTML = `Jadwal dipilih: <strong>${label} WIB</strong> (Pukul ${nextHr} otomatis dikunci sebagai waktu jeda 1 jam).`;
+                        cpHelperText.innerHTML = `Jadwal dipilih: <strong>${label} WIB</strong> (sesi 1 jam, jeda 1 jam hingga ${nextHr}).`;
                     }
                 });
             }
@@ -77,4 +76,24 @@ if (cpDateInput && cpTimeGrid && cpSelectedTime) {
     });
 
     renderContactSlots();
+
+    // Cegah double-submit + feedback visual
+    const cpForm = document.getElementById('appointmentForm');
+    if (cpForm) {
+        cpForm.addEventListener('submit', function (e) {
+            if (!cpSelectedTime.value) {
+                e.preventDefault();
+                if (cpHelperText) {
+                    cpHelperText.innerHTML = '<span style="color:#C84B31;">Silakan pilih salah satu jam terlebih dahulu.</span>';
+                }
+                cpTimeGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            const submitBtn = cpForm.querySelector('.cp-submit-btn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Menyimpan...';
+            }
+        });
+    }
 }

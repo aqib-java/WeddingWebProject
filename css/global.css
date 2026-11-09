@@ -2,7 +2,12 @@
 :root {
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Lato', sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
     --color-text-main: #111111;
+    --color-bg: #F9F8F6;
+    --color-accent: #8CA361;
+    --color-rose: #DFA6A9;
+    --color-error: #C84B31;
     --color-bg-hero: #e0e5db;
     --transition-fast: 0.3s ease;
 }
@@ -13,10 +18,33 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+}
+
 body {
     font-family: var(--font-sans);
     color: var(--color-text-main);
     -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 a {
@@ -349,7 +377,7 @@ a {
     counter-reset: sidebar-item;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 26px;
     width: 100%;
 }
 
@@ -369,19 +397,22 @@ a {
     gap: 16px;
     padding: 15px 6px;
     font-family: var(--font-serif);
-    font-size: 29px;
-    line-height: 1.15;
-    transition: padding-left 0.35s ease;
+    font-size: 34px;
+    position: relative;
+    display: inline-block;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.sidebar-nav li a::before {
-    content: counter(sidebar-item, decimal-leading-zero);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    opacity: 0.45;
-    transform: translateY(-4px);
-    transition: opacity 0.3s ease;
+.sidebar-nav li a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 0;
+    height: 1.5px;
+    background-color: var(--color-text-main);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
 .sidebar-nav li a::after {
@@ -395,7 +426,11 @@ a {
 }
 
 .sidebar-nav li a:hover {
-    padding-left: 16px;
+    opacity: 0.7;
+}
+
+.sidebar-nav li a:hover::after {
+    width: 100%;
 }
 
 .sidebar-nav li a:hover::before {

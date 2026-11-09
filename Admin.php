@@ -43,25 +43,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'updat
             $target_hour    = (int) explode(':', $final_time)[0];
             $time_db_format = sprintf('%02d:00:00', $target_hour);
 
-            // Cek bentrok & jeda 1 jam dengan reservasi lain di tanggal tujuan
-            $stmt_conflict = $conn->prepare("SELECT meeting_time, client_name FROM meetings WHERE meeting_date = ? AND meeting_id != ?");
             $has_conflict  = false;
             $conflict_info = '';
 
-            if ($stmt_conflict) {
+            if (!in_array($target_hour, [9, 11, 13, 15, 17], true)) {
+                $has_conflict  = true;
+                $conflict_info = 'Jam meeting harus salah satu dari 09:00, 11:00, 13:00, 15:00, atau 17:00.';
+            }
+
+            // Cek bentrok & jeda 1 jam dengan reservasi lain di tanggal tujuan
+            $stmt_conflict = $conn->prepare("SELECT meeting_time, client_name FROM meetings WHERE meeting_date = ? AND meeting_id != ?");
+
+            if (!$has_conflict && $stmt_conflict) {
                 $stmt_conflict->bind_param("si", $final_date, $meeting_id);
                 $stmt_conflict->execute();
                 $res_conflict = $stmt_conflict->get_result();
 
                 while ($row_c = $res_conflict->fetch_assoc()) {
                     $booked_hour = (int) explode(':', $row_c['meeting_time'])[0];
-                    if ($target_hour === $booked_hour) {
+                    if (abs($target_hour - $booked_hour) <= 1) {
                         $has_conflict  = true;
-                        $conflict_info = 'Pukul ' . sprintf('%02d:00', $booked_hour) . ' pada tanggal tersebut sudah terisi oleh ' . $row_c['client_name'] . '.';
-                        break;
-                    } elseif ($target_hour === ($booked_hour + 1)) {
-                        $has_conflict  = true;
-                        $conflict_info = 'Pukul ' . sprintf('%02d:00', $target_hour) . ' adalah waktu jeda 1 jam setelah sesi pukul ' . sprintf('%02d:00', $booked_hour) . '.';
+                        $conflict_info = 'Pukul ' . sprintf('%02d:00', $target_hour) . ' berjarak jeda 1 jam dari sesi pukul ' . sprintf('%02d:00', $booked_hour) . ' (' . $row_c['client_name'] . ').';
                         break;
                     }
                 }

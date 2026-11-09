@@ -84,5 +84,3 @@
     </section>
 
     <?php include 'footer.php'; ?>
-
-<script src="Js/script.js"></script>
