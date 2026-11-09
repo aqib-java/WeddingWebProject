@@ -1,7 +1,3 @@
-<head>
-    <link rel="stylesheet" href="css/History.css" type="text/css">
-
-</head>
 <?php
 require_once 'db.php';
 
@@ -102,6 +98,7 @@ include 'Header.php';
                             <p class="empty-desc">
                                 Silakan kunjungi halaman reservasi kami jika Anda ingin menjadwalkan sesi konsultasi privat bersama spesialis pernikahan Ever After.
                             </p>
+                            <a href="Contact.php" class="btn-outline history-empty-cta">Jadwalkan Pertemuan</a>
                         </div>
                     <?php else: ?>
                         <table class="history-table">

@@ -35,7 +35,7 @@
     function renderAdminTimeSlots(selectedDate, currentMeetingId, desiredTime) {
         if (!adminTimeGrid) return;
         adminTimeGrid.innerHTML = '';
-        const hours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+        const hours = [9, 11, 13, 15, 17];
         const map = window.ADMIN_BOOKED_MAP || {};
         const bookingsOnDate = map[selectedDate] || [];
 
@@ -53,7 +53,9 @@
             btn.className = 'cp-time-slot';
 
             const isBooked = otherBookedHours.includes(hr);
-            const isBuffer = otherBookedHours.includes(hr - 1);
+            const isBuffer = !isBooked && otherBookedHours.some(function (b) {
+                return Math.abs(b - hr) <= 1;
+            });
 
             if (isBooked) {
                 btn.classList.add('is-booked');

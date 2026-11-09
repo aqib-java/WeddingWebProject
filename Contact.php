@@ -34,10 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
     $notes = trim($_POST['clientMessage'] ?? '');
     $user_id = isset($_SESSION['user_id']) ? (int) $_SESSION['user_id'] : null;
 
+    $target_hour = (int) explode(':', $selected_hr)[0];
+
     if (empty($first_name) || empty($email) || empty($phone) || empty($meeting_date) || empty($selected_hr)) {
         $booking_error = 'Mohon lengkapi seluruh kolom wajib dan klik salah satu slot jam yang tersedia.';
+    } elseif (!in_array($target_hour, [9, 11, 13, 15, 17], true)) {
+        $booking_error = 'Jam meeting harus salah satu dari 09:00, 11:00, 13:00, 15:00, atau 17:00.';
     } else {
-        $target_hour = (int) explode(':', $selected_hr)[0];
         $time_db = sprintf('%02d:00:00', $target_hour);
 
         // Validasi Bentrok & Jeda 1 Jam langsung dari tabel meetings di MySQL

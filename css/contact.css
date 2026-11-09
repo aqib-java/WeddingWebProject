@@ -200,13 +200,13 @@
 
 .cp-time-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
     margin-bottom: 10px;
 }
 
 .cp-time-slot {
-    padding: 12px 8px;
+    padding: 14px 8px;
     border: 1px solid rgba(17, 17, 17, 0.35);
     background-color: transparent;
     display: flex;
@@ -216,17 +216,19 @@
     gap: 4px;
     cursor: pointer;
     transition: all 0.25s ease;
+    position: relative;
 }
 
 .cp-time-slot .slot-time {
     font-family: var(--font-mono);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .cp-time-slot .slot-badge {
     font-family: var(--font-sans);
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
@@ -234,12 +236,27 @@
 .cp-time-slot.is-available:hover {
     border-color: #111111;
     background-color: rgba(140, 163, 97, 0.18);
+    transform: translateY(-2px);
+}
+
+.cp-time-slot.is-available:active {
+    transform: translateY(0);
 }
 
 .cp-time-slot.is-selected {
     background-color: #8CA361 !important;
     border-color: #111111 !important;
     color: #111111;
+    box-shadow: 0 4px 14px rgba(140, 163, 97, 0.4);
+}
+
+.cp-time-slot.is-selected::after {
+    content: '\2713';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .cp-time-slot.is-booked {
@@ -260,11 +277,22 @@
     cursor: not-allowed;
 }
 
+.cp-time-slot.is-booked,
+.cp-time-slot.is-buffer {
+    cursor: not-allowed;
+}
+
+.cp-time-slot:disabled {
+    cursor: not-allowed;
+}
+
 .cp-slot-helper {
     font-family: var(--font-sans);
     font-size: 12.5px;
     color: rgba(17, 17, 17, 0.65);
     font-weight: 300;
+    display: block;
+    min-height: 18px;
 }
 
 .cp-feedback {
@@ -300,18 +328,24 @@
 .cp-submit-btn {
     background: none;
     border: 1px solid #111111;
-    padding: 15px 45px;
+    padding: 16px 52px;
     font-family: var(--font-mono);
     font-size: 13px;
     letter-spacing: 1px;
     color: #111111;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .cp-submit-btn:hover {
     background-color: #111111;
     color: #F9F8F6;
+}
+
+.cp-submit-btn:disabled {
+    opacity: 0.55;
+    cursor: wait;
 }
 
 @media (max-width: 950px) {
@@ -339,6 +373,25 @@
         width: 100%;
     }
     .cp-time-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .cp-section {
+        padding: 140px 18px 90px 18px;
+    }
+    .cp-main-title {
+        font-size: 34px;
+        margin-bottom: 34px;
+    }
+    .cp-time-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .cp-time-slot {
+        padding: 12px 6px;
+    }
+    .cp-submit-btn {
+        width: 100%;
     }
 }

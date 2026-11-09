@@ -32,6 +32,8 @@
     } elseif ($page === 'admin.php') {
         echo '<link rel="stylesheet" href="css/contact.css?v=' . time() . '">';
         echo '<link rel="stylesheet" href="css/admin.css?v=' . time() . '">';
+    } elseif ($page === 'history.php') {
+        echo '<link rel="stylesheet" href="css/History.css?v=' . time() . '">';
     }
     ?>
 </head>

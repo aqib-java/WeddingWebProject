@@ -66,6 +66,10 @@ if ((int)$timeObject->format('G') < 9 ||
     respond(false, 'Silakan pilih jam meeting antara pukul 09:00–17:00.');
 }
 
+if (!in_array((int)$timeObject->format('G'), [9, 11, 13, 15, 17], true)) {
+    respond(false, 'Jam meeting harus salah satu dari 09:00, 11:00, 13:00, 15:00, atau 17:00.');
+}
+
 // Periksa apakah jam tersebut sudah dipesan atau terkena jeda
 $stmt = $conn->prepare(
     "SELECT meeting_id
